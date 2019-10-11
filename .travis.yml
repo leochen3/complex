@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t leochen/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t leochen3/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run leochen/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t leochen/multi-client ./client
-  - docker build -t leochen/multi-nginx ./nginx
-  - docker build -t leochen/multi-server ./server
+  - docker build -t leochen3/multi-client ./client
+  - docker build -t leochen3/multi-nginx ./nginx
+  - docker build -t leochen3/multi-server ./server
   - docker build -t leochen/multi-worker ./worker
   # log in to docker
   # echo retreive environment variable and put it in stdin channel for login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push leochen/multi-client 
-  - docker push leochen/multi-nginx 
-  - docker push leochen/multi-server 
-  - docker push leochen/multi-worker 
+  - docker push leochen3/multi-client
+  - docker push leochen3/multi-nginx
+  - docker push leochen3/multi-server
+  - docker push leochen3/multi-worker
