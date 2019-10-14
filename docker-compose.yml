@@ -19,6 +19,8 @@ services:
       - /app/node_modules # bookmarks hold means don't overwrite this file
       - ./server:/app #direct to the /server inside of our project directory
     environment: #all default values
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
       - PGUSER=postgres
       - PGHOST=postgres
       - PGDATABASE=postgres
