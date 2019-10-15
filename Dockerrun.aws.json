@@ -3,7 +3,7 @@
   "containerDefinations": [
     {
       "name": "client",
-      "image": "leochen3/multi-client"
+      "image": "leochen3/multi-client",
       "hostname": "client",
       "essential": false
     },
@@ -21,7 +21,7 @@
     },
     {
       "name": "nginx",
-      "image": "leochen3/mulyi-nginx",
+      "image": "leochen3/multi-nginx",
       "hostname": "ngnix",
       "essential": true,
       "portMappings": [
@@ -30,7 +30,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["client", "server "]
+      "links": ["client", "server"]
     }
   ]
 }
