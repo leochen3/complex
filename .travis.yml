@@ -13,24 +13,23 @@ after_success:
   - docker build -t leochen3/multi-nginx ./nginx
   - docker build -t leochen3/multi-server ./server
   - docker build -t leochen3/multi-worker ./worker
-  # log in to docker
-  # echo retreive environment variable and put it in stdin channel for login
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
   - docker push leochen3/multi-client
   - docker push leochen3/multi-nginx
   - docker push leochen3/multi-server
   - docker push leochen3/multi-worker
 
-deploy:
-  provider: elasticbeanstalk
-  region: us-east-2
-  app: multi-docker
-  env: MultiDocker-env
-  bucket_name: elasticbeanstalk-us-east-2-669720857739
-  bucket_path: docker-multi
-  on:
-    branch: master
-  access_key_id:
-    secure: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+#deploy:
+#  provider: elasticbeanstalk
+#  region: us-west-1
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: elasticbeanstalk-us-west-1-306476627547
+#  bucket_path: docker-multi
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key:
+#    secure: $AWS_SECRET_KEY
